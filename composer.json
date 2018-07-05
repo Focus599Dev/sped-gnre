@@ -1,6 +1,9 @@
 {
     "name": "nfephp-org/sped-gnre",
+    "type": "library",
     "description": "API para a emissão de guias GNRE para a SEFAZ",
+    "keywords": ["nfe","nfce","sped","nfephp", "gnre"],
+    "homepage": "https://github.com/Focus599Dev/sped-gnre/edit/master/composer.json",
     "license": ["GPL-3.0+","LGPL-3.0+", "MIT"],
     "authors": [
         {
@@ -10,6 +13,10 @@
         {
             "name": "Leandro Pereira",
             "email": "llpereiras@gmail.com"
+        },
+         {
+            "name": "Marlon Oliveira Barbosa",
+            "email": "marlon.academi@gmail.com"
         }
     ],
     "require": {
@@ -26,8 +33,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Sped\\Gnre\\": "lib/Sped/Gnre/",
-            "Sped\\Gnre\\Test\\": "testes/"
+            "Sped\\Gnre\\": "lib/Sped/Gnre/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpcbf": "vendor/bin/phpcbf --standard=psr2 src/ & vendor/bin/phpcbf --standard=psr2 tests/",
+        "phpcs": "vendor/bin/phpcs --standard=psr2 src/; vendor/bin/phpcs --standard=psr2 tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "v5.0": "5.0-dev"
         }
     },
     "minimum-stability": "dev",
