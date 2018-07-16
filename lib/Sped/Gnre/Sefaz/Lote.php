@@ -217,6 +217,7 @@ class Lote extends LoteGnre
             $loteGnre->appendChild($guia);
         }
 
+
         // levado para tools
         // $this->getSoapEnvelop($gnre, $loteGnre);
 
