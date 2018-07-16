@@ -1,0 +1,26 @@
+{
+    "name": "nfephp-org/sped-gnre",
+    "description": "API para a emissão de guias GNRE para a SEFAZ",
+    "license": ["GPL-3.0+","LGPL-3.0+", "MIT"],
+    "authors": [
+        {
+            "name": "Matheus Marabesi",
+            "email": "matheus.marabesi@gmail.com"
+        },
+        {
+            "name": "Leandro Pereira",
+            "email": "llpereiras@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sped\\Gnre\\": "lib/Sped/Gnre/",
+            "Sped\\Gnre\\Test\\": "testes/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
