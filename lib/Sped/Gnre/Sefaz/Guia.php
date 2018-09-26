@@ -423,6 +423,8 @@ class Guia
     }
 
     public function parseToNumber($n){
-        return intval($n);
+        $aux = intval($n);
+        
+        return intval($n) / 100;
     }
 }

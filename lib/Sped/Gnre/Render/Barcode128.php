@@ -61,25 +61,23 @@ class Barcode128
      */
     public function getCodigoBarrasBase64()
     {
-        ob_start();
 
         $text = $this->getNumeroCodigoBarras();
-        $options = array(
-            'text' => (string) $text,
-            'imageType' => 'jpeg',
-            'drawText' => false
-        );
 
-        $barcode = new \Zend\Barcode\Object\Code128();
-        $barcode->setOptions($options);
+        $barcodeOptions = array_merge(array('text' => (string) $text, 'drawText' => false), array());
 
-        $barcodeOBj = \Zend\Barcode\Barcode::factory($barcode);
+        $rendererOptions = array();
 
-        $imageResource = $barcodeOBj->draw();
+        $imageResource = \Zend\Barcode\Barcode::factory('code25interleaved', 'image', $barcodeOptions, $rendererOptions)->draw();
 
-        imagejpeg($imageResource);
+        ob_start();
+
+        imagepng($imageResource);
+        
+        imagedestroy($imageResource);
 
         $contents = ob_get_contents();
+        
         ob_end_clean();
 
         return base64_encode($contents);
