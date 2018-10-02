@@ -105,9 +105,7 @@ class Html
     public function create(Lote $lote)
     {
         $guiaViaInfo = array(
-            1 => '1ª via Banco',
-            2 => '2ª via Contrinuinte',
-            3 => '3ª via Contribuinte/Fisco'
+            1 => '1ª via Banco'
         );
 
         $guias = $lote->getGuias();
