@@ -218,6 +218,30 @@ class Lote extends LoteGnre
 
             $this->dom->addChild($dados, 'c33_dataPagamento', $gnreGuia->c33_dataPagamento, false);
 
+            if ($gnreGuia->periodo || $gnreGuia->mes || $gnreGuia->ano || $gnreGuia->parcela){
+
+                $c05_referencia = $this->dom->createElement('c05_referencia');
+
+                if ($gnreGuia->periodo != ''){
+                    $this->dom->addChild($c05_referencia, 'periodo', $gnreGuia->periodo, true);
+                }
+
+                if ($gnreGuia->mes != ''){
+                    $this->dom->addChild($c05_referencia, 'mes', $gnreGuia->mes, false);
+                }
+
+                if ($gnreGuia->ano != ''){
+                    $this->dom->addChild($c05_referencia, 'ano', $gnreGuia->ano, false);
+                }
+
+                if ($gnreGuia->parcela != ''){
+                    $this->dom->addChild($c05_referencia, 'parcela', $gnreGuia->parcela, false);
+                }
+
+                $this->dom->appChild($dados, $c05_referencia, 'Falta tag "TDadosGNRE"');
+
+            }
+
             if (isset($gnreGuia->c39_camposExtras[0]['campoExtra'])){
 
                 $c39_camposExtras = $this->dom->createElement('c39_camposExtras');
