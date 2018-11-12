@@ -166,7 +166,7 @@
                             </tr>
                             <tr>
                                 <td class="notop" colspan="2">
-                                    Documento válido para pagamento até {$guia->c14_dataVencimento}
+                                    Documento válido para pagamento até {$guia->c33_dataPagamento}
                                 </td>
                             </tr>
 
