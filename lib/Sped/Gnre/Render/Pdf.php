@@ -60,4 +60,23 @@ class Pdf
 
         return $dompdf;
     }
+    
+    /**
+     * Gera o PDF através do HTML e salva
+     * @param \Sped\Gnre\Render\Html $html
+     * @return \Dompdf\Dompdf
+     */
+    public function save(Html $html, $path)
+    {   
+
+        $dompdf = $this->getDomPdf();
+
+        $dompdf->SetDisplayMode('fullpage');
+
+        $dompdf->WriteHTML($html->getHtml());
+
+        $dompdf->Output($path, 'F');
+
+        return $dompdf;
+    }
 }
