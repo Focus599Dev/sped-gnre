@@ -136,6 +136,11 @@
                             </tr>
                             <tr>
                                 <td class="notop nobottom" colspan="2">
+                                    Razão social: {$guia->c37_razaoSocialDestinatario}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="notop nobottom" colspan="2">
                                     CNPJ/CPF/Insc. Est.: {$guia->c35_idContribuinteDestinatario}
                                 </td>
                             </tr>
