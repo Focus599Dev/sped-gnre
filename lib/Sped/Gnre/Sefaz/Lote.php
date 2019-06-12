@@ -203,10 +203,11 @@ class Lote extends LoteGnre
             } else {
 
                 $this->dom->addChild($c35, 'CPF', $c35_idContribuinteDestinatario, false);
-
             }
 
-            $this->dom->appChild($dados, $c35, 'Falta tag "TDadosGNRE"');
+            if ($c35_idContribuinteDestinatario){
+                $this->dom->appChild($dados, $c35, 'Falta tag "TDadosGNRE"');
+            }
 
             $c36_inscricaoEstadualDestinatario = $gnreGuia->c36_inscricaoEstadualDestinatario;
 
@@ -242,7 +243,7 @@ class Lote extends LoteGnre
 
             }
 
-            if (isset($gnreGuia->c39_camposExtras[0]['campoExtra'])){
+            if (isset($gnreGuia->c39_camposExtras[0]['campoExtra']) && ($gnreGuia->c39_camposExtras[0]['campoExtra']['codigo'] || $gnreGuia->c39_camposExtras[0]['campoExtra']['tipo'] || $gnreGuia->c39_camposExtras[0]['campoExtra']['valor'] )){
 
                 $c39_camposExtras = $this->dom->createElement('c39_camposExtras');
                 
