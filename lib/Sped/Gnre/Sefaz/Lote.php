@@ -243,21 +243,26 @@ class Lote extends LoteGnre
 
             }
 
-            if (isset($gnreGuia->c39_camposExtras[0]['campoExtra']) && ($gnreGuia->c39_camposExtras[0]['campoExtra']['codigo'] || $gnreGuia->c39_camposExtras[0]['campoExtra']['tipo'] || $gnreGuia->c39_camposExtras[0]['campoExtra']['valor'] )){
+            if ($gnreGuia->c39_camposExtras && is_array($gnreGuia->c39_camposExtras)){
 
                 $c39_camposExtras = $this->dom->createElement('c39_camposExtras');
-                
-                $campoExtra = $this->dom->createElement('campoExtra');
 
-                $this->dom->addChild($campoExtra, 'codigo', $gnreGuia->c39_camposExtras[0]['campoExtra']['codigo'], false);
-                
-                $this->dom->addChild($campoExtra, 'tipo', $gnreGuia->c39_camposExtras[0]['campoExtra']['tipo'], false);
+                foreach ($gnreGuia->c39_camposExtras['campoExtra'] as $campoExtra) {
+                    
+                    $campoExtraDOM = $this->dom->createElement('campoExtra');
 
-                $this->dom->addChild($campoExtra, 'valor', $gnreGuia->c39_camposExtras[0]['campoExtra']['valor'], false);
+                    $this->dom->addChild($campoExtraDOM, 'codigo', $campoExtra['codigo'], false);
 
-                $this->dom->appChild($c39_camposExtras, $campoExtra, 'Falta tag "TDadosGNRE"');
+                    $this->dom->addChild($campoExtraDOM, 'tipo', $campoExtra['tipo'], false);
+
+                    $this->dom->addChild($campoExtraDOM, 'valor', $campoExtra['valor'], false);
+
+                    $this->dom->appChild($c39_camposExtras, $campoExtraDOM, 'Falta tag "TDadosGNRE"');
                 
+                }
+
                 $this->dom->appChild($dados, $c39_camposExtras, 'Falta tag "TDadosGNRE"');
+
             }
 
             $this->dom->appChild($guia, $dados, 'Falta tag "guia"');
