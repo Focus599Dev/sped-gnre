@@ -270,6 +270,31 @@ class Guia
     private $c42_identificadorGuia;
 
     /**
+     * Atributo para tipo de GNRE
+     * 0 - GNRE Simples
+     * 1 - GNRE Multiplos Doc. de Origem
+     * 2 - GNRE Multiplas Receitas
+     * @var int
+     */
+    private $tipoGnre;
+
+    /**
+     * Atributo tipo Valor
+     * 11 - Valor Principal ICMS
+     * 12 - Valor Principal Fundo de Pobreza (FP)
+     * 21 -  Valor Total ICMS
+     * 22 -  Valor Total FP
+     * 31 - Valor Multa ICMS
+     * 32 - Valor Multa FP
+     * 41 - Valor Juros ICMS
+     * 42 - Valor Juros FP
+     * 51 - Valor Atualização Monetaria ICMS
+     * 52 - Valor Atualização Monetaria FP
+     * @var int
+     */
+    private $tipoValor;
+
+    /**
      * Dados retornados pelo web service da SEFAZ
      * com os dados complementares da guia
      * @var string
@@ -419,12 +444,12 @@ class Guia
     public function parseToDate($dateC){
 
         return substr($dateC, 4,4) . '-' . substr($dateC, 2,2) . '-' . substr($dateC, 0,2);
-        
+
     }
 
     public function parseToNumber($n){
         $aux = intval($n);
-        
+
         return intval($n) / 100;
     }
 }

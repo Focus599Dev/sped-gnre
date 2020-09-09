@@ -1,7 +1,7 @@
 <html>
     <meta charset="UTF-8"/>
     <style type="text/css">
-        @page { 
+        @page {
             margin: 5px;
             padding:0px;
         }
@@ -11,7 +11,7 @@
             font-size: 13px;
         }
         table{
-    
+
             border-collapse: collapse;
         }
 
@@ -118,7 +118,7 @@
                                     Município: {$guia->c19_municipioEmitente}
                                 </td>
                                 <td class="borderright">
-                                    UF: $guia->c20_ufEnderecoEmitente
+                                    UF: {$guia->c20_ufEnderecoEmitente}
                                 </td>
                             </tr>
                             <tr>
@@ -228,12 +228,6 @@
                             </tr>
                             <tr>
                                 <td colspan="3" class="notop" align="right">R$ {$guia->c06_valorPrincipal}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="nobottom">Atualização Monetária</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="notop" align="right">R$ {$guia->retornoAtualizacaoMonetaria}</td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="nobottom">Juros</td>

@@ -32,7 +32,7 @@ class SoapCurl extends SoapBase implements SoapInterface
     {
         parent::__construct($certificate, $logger);
     }
-    
+
     /**
      * Send soap message to url
      * @param string $url
@@ -140,7 +140,7 @@ class SoapCurl extends SoapBase implements SoapInterface
 
         return $this->responseBody;
     }
-    
+
     /**
      * Set proxy into cURL parameters
      * @param resource $oCurl

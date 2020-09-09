@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Sped\Gnre\Sefaz;
 
@@ -47,7 +47,7 @@ class Tools{
      */
 
     public $tpAmb = 2;
-    
+
     /**
      * soap class
      * @var SoapInterface
@@ -82,7 +82,7 @@ class Tools{
      * @var string
      */
     protected $urlNamespace = 'http://www.gnre.pe.gov.br/webservice/GnreLoteRecepcao';
-    
+
     protected $urlNamespaceConsulta = 'http://www.gnre.pe.gov.br/webservice/GnreResultadoLote';
     /**
      * @var string
@@ -128,12 +128,17 @@ class Tools{
     /**
      * @var string
      */
-    protected $urlVersion = '1.00';
+    protected $urlVersion = '2.00';
+
+    protected $schemaV = array(
+        '1.00'=> 'V1_00',
+        '2.00'=> 'V2_00',
+    );
 
     public function __construct($configJson, Certificate $certificate)
     {
         $this->config = json_decode($configJson);
-        
+
         $this->pathwsfiles = realpath(
             __DIR__ . '/../../../../storage'
         ).'/';
@@ -142,10 +147,14 @@ class Tools{
             __DIR__ . '/../../../../schemes'
         ).'/';
 
+        if (isset($this->schemaV[$this->urlVersion])){
+            $this->pathschemes .= $this->schemaV[$this->urlVersion] . '/';
+        }
+
         $this->certificate = $certificate;
-        
+
         $this->setEnvironment($this->config->tpAmb);
-        
+
         $this->soap = new SoapCurl($certificate);
 
         if ($this->config->certificateChain){
@@ -158,7 +167,7 @@ class Tools{
     }
 
     public function setEnvironment($tpAmb = 2){
-        
+
         $this->tpAmb = $tpAmb;
 
     }
@@ -168,13 +177,13 @@ class Tools{
     	$this->isValid($this->urlVersion, $xml, 'lote_gnre');
 
     	$xml = trim(preg_replace("/<\?xml.*?\?>/", "", $xml));
-    	
+
     	$body = '<gnreDadosMsg xmlns="' . $this->urlNamespace . '">' . $xml . '</gnreDadosMsg>';
 
     	$this->lastRequest = $body;
 
     	$parameters = ['gnreDadosMsg' => $body];
-        
+
         $this->objHeader = $this->getSoapEnvelop('processar');
 
     	$this->lastResponse = $this->sendRequest($body, $parameters, $this->uri[$this->tpAmb], $this->urlMethod, $this->urlAction[$this->tpAmb]);
@@ -197,12 +206,12 @@ class Tools{
 
         $xml = trim(preg_replace("/<\?xml.*?\?>/", "", $xml));
 
-        $body = '<gnreDadosMsg xmlns="' . $this->urlNamespaceConsulta . '">' . $xml . '</gnreDadosMsg>';        
+        $body = '<gnreDadosMsg xmlns="' . $this->urlNamespaceConsulta . '">' . $xml . '</gnreDadosMsg>';
 
         $this->lastRequest = $body;
 
         $parameters = ['gnreDadosMsg' => $body];
-        
+
         $this->objHeader = $this->getSoapEnvelop('consultar');
 
         $this->lastResponse = $this->sendRequest($body, $parameters, $this->uriConsulta[$this->tpAmb], 'GnreResultadoLote', $this->urlActionConsulta[$this->tpAmb]);
@@ -211,7 +220,7 @@ class Tools{
     }
 
     public function getSoapEnvelop($action){
-        
+
         $header = new \stdClass();
 
         $header->data = array();
@@ -220,7 +229,7 @@ class Tools{
 
         $header->namespace = 'http://www.gnre.pe.gov.br/wsdl/' . $action;
 
-        $header->data['versaoDados'] = '1.00';
+        $header->data['versaoDados'] = '2.00';
 
         return $header;
     }
