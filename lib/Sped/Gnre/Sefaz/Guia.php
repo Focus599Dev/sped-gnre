@@ -294,6 +294,16 @@ class Guia
      */
     private $tipoValor;
 
+    /** 
+     * Atributo não oficial GNRE
+     */
+    private $cnpj_transp;
+
+    /** 
+     * Atributo não oficial GNRE
+     */
+    private $name_transp;
+
     /**
      * Dados retornados pelo web service da SEFAZ
      * com os dados complementares da guia
