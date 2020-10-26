@@ -174,17 +174,23 @@
                                     Documento válido para pagamento até {$guia->c33_dataPagamento}
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td colspan="2" class="noborder" style="padding-left:70px; border:none;">
-                                    {$guia->retornoRepresentacaoNumerica}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="noborder" colspan="2" style="padding-left:40px;border:none;" >
-                                    <img src="data:image/png;base64,{$barcode->getCodigoBarrasBase64()}"/>
-                                </td>
-                            </tr>
+                            {if $guia->cnpj_transp ne '' and $guia->name_transp ne ''}
+                                <tr>
+                                    <td class="center nobrdtb" colspan="2">
+                                        Informações da transportadora
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="nobrdtb" colspan="2" valign="top">
+                                        Nome: {$guia->name_transp}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="nobrdtb" colspan="2" style="height:38px" valign="center">
+                                        CNPJ: {$guia->cnpj_transp}
+                                    </td>
+                                </tr>
+                            {/if}
                         </table>
                     </td>
                     <td class="noborder" style="border:none;" valign="top">
@@ -251,6 +257,16 @@
                                 <td class="noborder" colspan="3" style="text-align:right;">{$via}</td>
                             </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="noborder" style="padding-left:70px; border:none;text-align:center;">
+                        {$guia->retornoRepresentacaoNumerica}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noborder" colspan="2" style="padding-left:40px;border:none;text-align:center;" >
+                        <img src="data:image/png;base64,{$barcode->getCodigoBarrasBase64()}"/>
                     </td>
                 </tr>
             </table>
