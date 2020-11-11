@@ -303,6 +303,11 @@ class Guia
      * Atributo não oficial GNRE
      */
     private $name_transp;
+    
+    /** 
+     * Atributo não oficial GNRE
+    */
+    private $valores;
 
     /**
      * Dados retornados pelo web service da SEFAZ
