@@ -225,15 +225,34 @@ class Lote extends LoteGnre
 
             $this->dom->addChild($item, 'dataVencimento', $gnreGuia->c14_dataVencimento, false);
 
-            $valor = $this->dom->createElement('valor', $gnreGuia->c06_valorPrincipal);
+              if (!$gnreGuia->valores){
+                
+                $valor = $this->dom->createElement('valor', $gnreGuia->c06_valorPrincipal);
 
-            $valorTipo = $this->dom->createAttribute('tipo');
+                $valorTipo = $this->dom->createAttribute('tipo');
 
-            $valorTipo->value = $gnreGuia->tipoValor;
+                $valorTipo->value = $gnreGuia->tipoValor;
 
-            $valor->appendChild($valorTipo);
+                $valor->appendChild($valorTipo);
 
-            $item->appendChild($valor);
+                $item->appendChild($valor);
+
+            } else {
+                
+                foreach ( $gnreGuia->valores as $valores) {
+                    
+                    $valor = $this->dom->createElement('valor', $valores['valor']);
+
+                    $valorTipo = $this->dom->createAttribute('tipo');
+    
+                    $valorTipo->value = $valores['tipo'];
+    
+                    $valor->appendChild($valorTipo);
+    
+                    $item->appendChild($valor);
+                }
+
+            }
 
             $this->dom->addChild($item, 'convenio', $gnreGuia->c15_convenio, false);
 
