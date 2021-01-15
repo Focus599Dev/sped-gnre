@@ -187,15 +187,17 @@ class Lote extends LoteGnre
 
             $this->dom->addChild($item, 'detalhamentoReceita', $gnreGuia->c25_detalhamentoReceita, false);
 
-            $documentoOrigem = $this->dom->createElement('documentoOrigem', $gnreGuia->c04_docOrigem);
+           if ($gnreGuia->c04_docOrigem){
+                $documentoOrigem = $this->dom->createElement('documentoOrigem', $gnreGuia->c04_docOrigem);
 
-            $documentoTipo = $this->dom->createAttribute('tipo');
+                $documentoTipo = $this->dom->createAttribute('tipo');
 
-            $documentoTipo->value = $gnreGuia->c28_tipoDocOrigem;
+                $documentoTipo->value = $gnreGuia->c28_tipoDocOrigem;
 
-            $documentoOrigem->appendChild($documentoTipo);
+                $documentoOrigem->appendChild($documentoTipo);
 
-            $item->appendChild($documentoOrigem);
+                $item->appendChild($documentoOrigem);
+            }
 
             $this->dom->addChild($item, 'produto', $gnreGuia->c26_produto, false);
 
